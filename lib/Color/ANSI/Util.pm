@@ -34,7 +34,7 @@ our @EXPORT_OK = qw(
                        detect_color_depth
                );
 
-our $VERSION = '0.03'; # VERSION
+our $VERSION = '0.04'; # VERSION
 
 my %ansi16 = (
     0  => '000000',
@@ -313,7 +313,7 @@ Color::ANSI::Util - Routines for dealing with ANSI colors
 
 =head1 VERSION
 
-version 0.03
+version 0.04
 
 =head1 SYNOPSIS
 
@@ -467,9 +467,15 @@ Alias for rgb_to_ansi_bg_code().
 
 =head2 detect_color_depth() => INT
 
-Detect color depth.
+Detect color depth. Return either 2**24 (16777216), 256, or 16. Currently 24bit
+is determined by existence of Konsole environment variables, and 256 colors by
+detecting C<TERM> value of C<xterm-256color>. Otherwise, 16 colors is assumed.
 
 =head1 ENVIRONMENT
+
+=head2 COLOR_DEPTH => INT
+
+Observed by: ansi{fg,bg}.
 
 =head1 BUGS/NOTES
 

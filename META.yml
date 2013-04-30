@@ -18,4 +18,4 @@ requires:
 resources:
   homepage: http://metacpan.org/release/Color-ANSI-Util
   repository: http://github.com/sharyanto/perl-Color-ANSI-Util
-version: 0.03
+version: 0.04
