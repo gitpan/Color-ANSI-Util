@@ -2,7 +2,7 @@ NAME
     Color::ANSI::Util - Routines for dealing with ANSI colors
 
 VERSION
-    version 0.02
+    version 0.03
 
 SYNOPSIS
      use Color::ANSI::Util qw(
@@ -113,10 +113,36 @@ FUNCTIONS
   ansi24bbg($rgb) => STR
     Alias for rgb_to_ansi24b_bg_code().
 
+  rgb_to_ansi_fg_code($rgb) => STR
+    Return ANSI escape code to set 24bit/256/16 foreground color (which
+    color depth used is determined by "COLOR_DEPTH" environment setting or
+    the latest detect_color_depth() result). In other words, this function
+    automatically chooses rgb_to_ansi{24b,256,16}_fg_code().
+
+  ansifg($rgb) => STR
+    Alias for rgb_to_ansi_fg_code().
+
+  rgb_to_ansi_bg_code($rgb) => STR
+    Return ANSI escape code to set 24bit/256/16 background color (which
+    color depth used is determined by "COLOR_DEPTH" environment setting or
+    the latest detect_color_depth() result). In other words, this function
+    automatically chooses rgb_to_ansi{24b,256,16}_bg_code().
+
+  ansibg($rgb) => STR
+    Alias for rgb_to_ansi_bg_code().
+
+  detect_color_depth() => INT
+    Detect color depth.
+
+ENVIRONMENT
 BUGS/NOTES
     Algorithm for finding closest indexed color from RGB color currently not
     very efficient. Probably can add some threshold square distance, below
     which we can shortcut to the final answer.
+
+TODO
+    Routine to convert ANSI escape code, e.g. "\e[31;1m" into RGB value
+    (ff0000).
 
 SEE ALSO
     Term::ANSIColor
