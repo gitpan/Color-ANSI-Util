@@ -34,7 +34,7 @@ our @EXPORT_OK = qw(
                        detect_color_depth
                );
 
-our $VERSION = '0.04'; # VERSION
+our $VERSION = '0.05'; # VERSION
 
 my %ansi16 = (
     0  => '000000',
@@ -313,7 +313,7 @@ Color::ANSI::Util - Routines for dealing with ANSI colors
 
 =head1 VERSION
 
-version 0.04
+version 0.05
 
 =head1 SYNOPSIS
 
