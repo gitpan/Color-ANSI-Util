@@ -14,8 +14,9 @@ meta-spec:
   version: 1.4
 name: Color-ANSI-Util
 requires:
+  Term::Detect: 0.02
   perl: 5.010001
 resources:
   homepage: http://metacpan.org/release/Color-ANSI-Util
   repository: http://github.com/sharyanto/perl-Color-ANSI-Util
-version: 0.05
+version: 0.06

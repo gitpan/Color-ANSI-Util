@@ -17,12 +17,13 @@ my %module_build_args = (
     "Steven Haryanto <stevenharyanto\@gmail.com>"
   ],
   "dist_name" => "Color-ANSI-Util",
-  "dist_version" => "0.05",
+  "dist_version" => "0.06",
   "license" => "perl",
   "module_name" => "Color::ANSI::Util",
   "recommends" => {},
   "recursive_test_files" => 1,
   "requires" => {
+    "Term::Detect" => "0.02",
     "perl" => "5.010001"
   },
   "script_files" => []

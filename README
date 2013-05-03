@@ -2,7 +2,7 @@ NAME
     Color::ANSI::Util - Routines for dealing with ANSI colors
 
 VERSION
-    version 0.05
+    version 0.06
 
 SYNOPSIS
      use Color::ANSI::Util qw(
