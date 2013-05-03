@@ -34,7 +34,7 @@ our @EXPORT_OK = qw(
                        detect_color_depth
                );
 
-our $VERSION = '0.06'; # VERSION
+our $VERSION = '0.07'; # VERSION
 
 my %ansi16 = (
     0  => '000000',
@@ -265,8 +265,6 @@ sub detect_color_depth {
         my $terminfo = _detect_terminal();
         if (defined $terminfo->{color_depth}) {
             $cd_cache = $terminfo->{color_depth};
-        } elsif (($ENV{TERM} // "") =~ /256color/) {
-            $cd_cache = 256;
         } else {
             # assume 16 color for unknown terminal
             $cd_cache = 16;
@@ -324,7 +322,7 @@ Color::ANSI::Util - Routines for dealing with ANSI colors
 
 =head1 VERSION
 
-version 0.06
+version 0.07
 
 =head1 SYNOPSIS
 
