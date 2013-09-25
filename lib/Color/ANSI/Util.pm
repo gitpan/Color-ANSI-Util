@@ -34,7 +34,7 @@ our @EXPORT_OK = qw(
                        detect_color_depth
                );
 
-our $VERSION = '0.07'; # VERSION
+our $VERSION = '0.08'; # VERSION
 
 my %ansi16 = (
     0  => '000000',
@@ -312,8 +312,8 @@ sub ansibg { goto &rgb_to_ansi_bg_code }
 1;
 # ABSTRACT: Routines for dealing with ANSI colors
 
-
 __END__
+
 =pod
 
 =head1 NAME
@@ -322,56 +322,20 @@ Color::ANSI::Util - Routines for dealing with ANSI colors
 
 =head1 VERSION
 
-version 0.07
+version 0.08
 
 =head1 SYNOPSIS
 
  use Color::ANSI::Util qw(
-     ansi16_to_rgb
-     ansi256_to_rgb
-     rgb_to_ansi16
-     rgb_to_ansi256
-     rgb_to_ansi16_fg_code
-     ansi16fg
-     rgb_to_ansi16_bg_code
-     ansi16bg
-     rgb_to_ansi256_fg_code
-     ansi256fg
-     rgb_to_ansi256_bg_code
-     ansi256bg
+     ansifg
+     ansibg
  );
 
- # convert ANSI 16-color index to RGB
- say ansi16_to_rgb(1);          # => "800000" (red)
- say ansi16_to_rgb("red");      # => "800000" (ditto)
- say ansi16_to_rgb(9);          # => "ff0000" (red bold)
- say ansi16_to_rgb("bold red"); # => "ff0000" (ditto)
+ say ansifg("f01010"); # => "\e[31;1m" (on 16-color terminal)
+ say ansibg("ff5f87"); # => "\e[48;5;204m" (on 256-color terminal)
 
- # convert RGB to ANSI 16-color index
- say ansi16_to_rgb("ac0405");    # => 1 (closest to red)
- say ansi16_to_rgb("f01010");    # => 9 (closest to bold red)
-
- # convert RGB to ANSI 16-color escape code for setting foreground color
- say rgb_to_ansi16_fg_code("ac0405"); # => "\e[31m"
- say ansi16fg("f01010");              # => "\e[31;1m" (shorter alias)
-
- # ditto but for background color (bgcolor actually only supports 0-7)
- say rgb_to_ansi16_bg_code("ac0405"); # => "\e[41m"
- say ansi16bg("f01010");              # => "\e[41m" (shorter alias)
-
- # convert ANSI 256-color index to RGB
- say ansi256_to_rgb(204);        # => "ff5f87"
-
- # convert RGB to ANSI 256-color index
- say rgb_to_ansi256("ff5f88");   # => 204 (closest)
-
- # convert RGB to ANSI 256-color escape code for setting foreground color
- say rgb_to_ansi256_fg_code("ff5f87"); # => "\e[38;5;204m"
- say ansi256fg("ff5f87");              # => "\e[38;5;204m" (shorter alias)
-
- # ditto but for background color (bgcolor actually only supports 0-7)
- say rgb_to_ansi256_bg_code("ff5f87"); # => "\e[48;5;204m"
- say ansi256bg("ff5f87");              # => "\e[48;5;204m" (shorter alias)
+There are a bunch of other exportable functions too, mostly for converting
+between RGB and ANSI color (16/256/24bit color depth).
 
 =head1 DESCRIPTION
 
@@ -514,4 +478,3 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-
