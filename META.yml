@@ -6,7 +6,7 @@ build_requires:
   File::Spec: 0
   IO::Handle: 0
   IPC::Open3: 0
-  Test::More: 0
+  Test::More: 0.98
 configure_requires:
   ExtUtils::MakeMaker: 6.30
 dynamic_config: 0
@@ -17,9 +17,9 @@ meta-spec:
   version: 1.4
 name: Color-ANSI-Util
 requires:
-  Term::Detect: 0.02
+  Term::Detect::Software: 0
   perl: 5.010001
 resources:
   homepage: http://metacpan.org/release/Color-ANSI-Util
   repository: http://github.com/sharyanto/perl-Color-ANSI-Util
-version: 0.08
+version: 0.09

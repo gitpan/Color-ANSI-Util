@@ -2,7 +2,7 @@ NAME
     Color::ANSI::Util - Routines for dealing with ANSI colors
 
 VERSION
-    version 0.08
+    version 0.09
 
 SYNOPSIS
      use Color::ANSI::Util qw(
@@ -80,7 +80,7 @@ FUNCTIONS
   rgb_to_ansi_fg_code($rgb) => STR
     Return ANSI escape code to set 24bit/256/16 foreground color (which
     color depth used is determined by "COLOR_DEPTH" environment setting or
-    the latest detect_color_depth() result). In other words, this function
+    from Term::Detect::Software). In other words, this function
     automatically chooses rgb_to_ansi{24b,256,16}_fg_code().
 
   ansifg($rgb) => STR
@@ -89,17 +89,11 @@ FUNCTIONS
   rgb_to_ansi_bg_code($rgb) => STR
     Return ANSI escape code to set 24bit/256/16 background color (which
     color depth used is determined by "COLOR_DEPTH" environment setting or
-    the latest detect_color_depth() result). In other words, this function
+    from Term::Detect::Software). In other words, this function
     automatically chooses rgb_to_ansi{24b,256,16}_bg_code().
 
   ansibg($rgb) => STR
     Alias for rgb_to_ansi_bg_code().
-
-  detect_color_depth() => INT
-    Detect color depth. Return either 2**24 (16777216), 256, or 16.
-    Currently 24bit is determined by existence of Konsole environment
-    variables, and 256 colors by detecting "TERM" value of "xterm-256color".
-    Otherwise, 16 colors is assumed.
 
 ENVIRONMENT
   COLOR_DEPTH => INT
