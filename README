@@ -2,7 +2,7 @@ NAME
     Color::ANSI::Util - Routines for dealing with ANSI colors
 
 VERSION
-    version 0.09
+    version 0.10
 
 SYNOPSIS
      use Color::ANSI::Util qw(
@@ -95,6 +95,8 @@ FUNCTIONS
   ansibg($rgb) => STR
     Alias for rgb_to_ansi_bg_code().
 
+    None are exported by default, but they are exportable.
+
 ENVIRONMENT
   COLOR_DEPTH => INT
     Observed by: ansi{fg,bg}.
@@ -112,6 +114,21 @@ SEE ALSO
     Term::ANSIColor
 
     http://en.wikipedia.org/wiki/ANSI_escape_code
+
+HOMEPAGE
+    Please visit the project's homepage at
+    <https://metacpan.org/release/Color-ANSI-Util>.
+
+SOURCE
+    Source repository is at
+    <https://github.com/sharyanto/perl-Color-ANSI-Util>.
+
+BUGS
+    Please report any bugs or feature requests on the bugtracker website
+    <https://rt.cpan.org/Public/Dist/Display.html?Name=Color-ANSI-Util>
+
+    When submitting a bug or request, please include a test-file or a patch
+    to an existing test-file that illustrates the bug or desired feature.
 
 AUTHOR
     Steven Haryanto <stevenharyanto@gmail.com>

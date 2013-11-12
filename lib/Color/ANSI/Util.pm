@@ -34,7 +34,7 @@ our @EXPORT_OK = qw(
                        ansibg
                );
 
-our $VERSION = '0.09'; # VERSION
+our $VERSION = '0.10'; # VERSION
 
 my %ansi16 = (
     0  => '000000',
@@ -289,13 +289,15 @@ __END__
 
 =pod
 
+=encoding UTF-8
+
 =head1 NAME
 
 Color::ANSI::Util - Routines for dealing with ANSI colors
 
 =head1 VERSION
 
-version 0.09
+version 0.10
 
 =head1 SYNOPSIS
 
@@ -411,6 +413,9 @@ rgb_to_ansi{24b,256,16}_bg_code().
 
 Alias for rgb_to_ansi_bg_code().
 
+
+None are exported by default, but they are exportable.
+
 =head1 ENVIRONMENT
 
 =head2 COLOR_DEPTH => INT
@@ -432,6 +437,23 @@ Routine to convert ANSI escape code, e.g. C<\e[31;1m> into RGB value (ff0000).
 L<Term::ANSIColor>
 
 http://en.wikipedia.org/wiki/ANSI_escape_code
+
+=head1 HOMEPAGE
+
+Please visit the project's homepage at L<https://metacpan.org/release/Color-ANSI-Util>.
+
+=head1 SOURCE
+
+Source repository is at L<https://github.com/sharyanto/perl-Color-ANSI-Util>.
+
+=head1 BUGS
+
+Please report any bugs or feature requests on the bugtracker website
+L<https://rt.cpan.org/Public/Dist/Display.html?Name=Color-ANSI-Util>
+
+When submitting a bug or request, please include a test-file or a
+patch to an existing test-file that illustrates the bug or desired
+feature.
 
 =head1 AUTHOR
 
