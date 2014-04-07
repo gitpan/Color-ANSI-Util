@@ -4,8 +4,6 @@ use 5.010001;
 use strict;
 use warnings;
 
-use Term::Detect::Software qw(detect_terminal_cached);
-
 require Exporter;
 our @ISA       = qw(Exporter);
 our @EXPORT_OK = qw(
@@ -34,7 +32,7 @@ our @EXPORT_OK = qw(
                        ansibg
                );
 
-our $VERSION = '0.10'; # VERSION
+our $VERSION = '0.11'; # VERSION
 
 my %ansi16 = (
     0  => '000000',
@@ -248,15 +246,37 @@ sub rgb_to_ansi24b_bg_code {
 
 sub ansi24bbg { goto &rgb_to_ansi24b_bg_code }
 
+our $_use_termdetsw = 1;
+our $_color_depth; # cache, can be set during testing
 sub _color_depth {
-    state $cd = $ENV{COLOR_DEPTH} //
-        detect_terminal_cached()->{color_depth} // 16;
-    $cd;
+    unless (defined $_color_depth) {
+        {
+            if (defined $ENV{COLOR_DEPTH}) {
+                $_color_depth = $ENV{COLOR_DEPTH};
+                last;
+            }
+            if ($_use_termdetsw) {
+                eval { require Term::Detect::Software };
+                if (!$@) {
+                    $_color_depth = Term::Detect::Software::detect_terminal_cached()->{color_depth};
+                    last;
+                }
+            }
+            # simple heuristic
+            if ($ENV{KONSOLE_DBUS_SERVICE}) {
+                $_color_depth = 2**24;
+                last;
+            }
+            # safe value
+            $_color_depth = 16;
+        }
+    };
+    $_color_depth;
 }
 
 sub rgb_to_ansi_fg_code {
     my ($rgb) = @_;
-    state $cd = _color_depth();
+    my $cd = _color_depth();
     if ($cd >= 2**24) {
         rgb_to_ansi24b_fg_code($rgb);
     } elsif ($cd >= 256) {
@@ -270,7 +290,7 @@ sub ansifg { goto &rgb_to_ansi_fg_code }
 
 sub rgb_to_ansi_bg_code {
     my ($rgb) = @_;
-    state $cd = _color_depth();
+    my $cd = _color_depth();
     if ($cd >= 2**24) {
         rgb_to_ansi24b_bg_code($rgb);
     } elsif ($cd >= 256) {
@@ -297,7 +317,7 @@ Color::ANSI::Util - Routines for dealing with ANSI colors
 
 =head1 VERSION
 
-version 0.10
+version 0.11
 
 =head1 SYNOPSIS
 
@@ -395,8 +415,8 @@ Alias for rgb_to_ansi24b_bg_code().
 
 Return ANSI escape code to set 24bit/256/16 foreground color (which color depth
 used is determined by C<COLOR_DEPTH> environment setting or from
-L<Term::Detect::Software>). In other words, this function automatically chooses
-rgb_to_ansi{24b,256,16}_fg_code().
+L<Term::Detect::Software> if that module is available). In other words, this
+function automatically chooses rgb_to_ansi{24b,256,16}_fg_code().
 
 =head2 ansifg($rgb) => STR
 
@@ -406,15 +426,12 @@ Alias for rgb_to_ansi_fg_code().
 
 Return ANSI escape code to set 24bit/256/16 background color (which color depth
 used is determined by C<COLOR_DEPTH> environment setting or from
-Term::Detect::Software). In other words, this function automatically chooses
-rgb_to_ansi{24b,256,16}_bg_code().
+Term::Detect::Software if that module is available). In other words, this
+function automatically chooses rgb_to_ansi{24b,256,16}_bg_code().
 
 =head2 ansibg($rgb) => STR
 
 Alias for rgb_to_ansi_bg_code().
-
-
-None are exported by default, but they are exportable.
 
 =head1 ENVIRONMENT
 
@@ -448,8 +465,7 @@ Source repository is at L<https://github.com/sharyanto/perl-Color-ANSI-Util>.
 
 =head1 BUGS
 
-Please report any bugs or feature requests on the bugtracker website
-L<https://rt.cpan.org/Public/Dist/Display.html?Name=Color-ANSI-Util>
+Please report any bugs or feature requests on the bugtracker website L<https://rt.cpan.org/Public/Dist/Display.html?Name=Color-ANSI-Util>
 
 When submitting a bug or request, please include a test-file or a
 patch to an existing test-file that illustrates the bug or desired
@@ -461,7 +477,7 @@ Steven Haryanto <stevenharyanto@gmail.com>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2013 by Steven Haryanto.
+This software is copyright (c) 2014 by Steven Haryanto.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

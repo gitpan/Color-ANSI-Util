@@ -2,7 +2,7 @@ NAME
     Color::ANSI::Util - Routines for dealing with ANSI colors
 
 VERSION
-    version 0.10
+    version 0.11
 
 SYNOPSIS
      use Color::ANSI::Util qw(
@@ -80,8 +80,9 @@ FUNCTIONS
   rgb_to_ansi_fg_code($rgb) => STR
     Return ANSI escape code to set 24bit/256/16 foreground color (which
     color depth used is determined by "COLOR_DEPTH" environment setting or
-    from Term::Detect::Software). In other words, this function
-    automatically chooses rgb_to_ansi{24b,256,16}_fg_code().
+    from Term::Detect::Software if that module is available). In other
+    words, this function automatically chooses
+    rgb_to_ansi{24b,256,16}_fg_code().
 
   ansifg($rgb) => STR
     Alias for rgb_to_ansi_fg_code().
@@ -89,13 +90,12 @@ FUNCTIONS
   rgb_to_ansi_bg_code($rgb) => STR
     Return ANSI escape code to set 24bit/256/16 background color (which
     color depth used is determined by "COLOR_DEPTH" environment setting or
-    from Term::Detect::Software). In other words, this function
-    automatically chooses rgb_to_ansi{24b,256,16}_bg_code().
+    from Term::Detect::Software if that module is available). In other
+    words, this function automatically chooses
+    rgb_to_ansi{24b,256,16}_bg_code().
 
   ansibg($rgb) => STR
     Alias for rgb_to_ansi_bg_code().
-
-    None are exported by default, but they are exportable.
 
 ENVIRONMENT
   COLOR_DEPTH => INT
@@ -134,7 +134,7 @@ AUTHOR
     Steven Haryanto <stevenharyanto@gmail.com>
 
 COPYRIGHT AND LICENSE
-    This software is copyright (c) 2013 by Steven Haryanto.
+    This software is copyright (c) 2014 by Steven Haryanto.
 
     This is free software; you can redistribute it and/or modify it under
     the same terms as the Perl 5 programming language system itself.
