@@ -32,7 +32,7 @@ our @EXPORT_OK = qw(
                        ansibg
                );
 
-our $VERSION = '0.11'; # VERSION
+our $VERSION = '0.12'; # VERSION
 
 my %ansi16 = (
     0  => '000000',
@@ -317,7 +317,7 @@ Color::ANSI::Util - Routines for dealing with ANSI colors
 
 =head1 VERSION
 
-version 0.11
+version 0.12
 
 =head1 SYNOPSIS
 
