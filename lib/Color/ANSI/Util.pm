@@ -1,7 +1,7 @@
 package Color::ANSI::Util;
 
-our $DATE = '2014-08-06'; # DATE
-our $VERSION = '0.13'; # VERSION
+our $DATE = '2015-01-03'; # DATE
+our $VERSION = '0.14'; # VERSION
 
 use 5.010001;
 use strict;
@@ -318,7 +318,7 @@ Color::ANSI::Util - Routines for dealing with ANSI colors
 
 =head1 VERSION
 
-This document describes version 0.13 of Color::ANSI::Util (from Perl distribution Color-ANSI-Util), released on 2014-08-06.
+This document describes version 0.14 of Color::ANSI::Util (from Perl distribution Color-ANSI-Util), released on 2015-01-03.
 
 =head1 SYNOPSIS
 
@@ -456,15 +456,11 @@ Algorithm for finding closest indexed color from RGB color currently not very
 efficient. Probably can add some threshold square distance, below which we can
 shortcut to the final answer.
 
-=head1 TODO
-
-Routine to convert ANSI escape code, e.g. C<\e[31;1m> into RGB value (ff0000).
-
 =head1 SEE ALSO
 
 L<Term::ANSIColor>
 
-http://en.wikipedia.org/wiki/ANSI_escape_code
+L<http://en.wikipedia.org/wiki/ANSI_escape_code>
 
 =head1 HOMEPAGE
 
@@ -484,11 +480,11 @@ feature.
 
 =head1 AUTHOR
 
-Steven Haryanto <stevenharyanto@gmail.com>
+perlancar <perlancar@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2014 by Steven Haryanto.
+This software is copyright (c) 2015 by perlancar@cpan.org.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
